@@ -247,6 +247,7 @@
   }
   .panel-head h3{margin:0;font-family:var(--serif);font-weight:400;font-size:19px;letter-spacing:.03em}
   .panel-head .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--ink-3)}
+  .panel-head .head-side{display:flex;align-items:baseline;gap:12px}
   .panel-body{padding:4px 18px 12px}
 
   .ditem{padding:10px 0;border-bottom:1px dashed var(--hair)}
@@ -462,8 +463,8 @@
     font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink-3);
   }
   .page-foot .links{display:flex;gap:14px}
-  .link{background:none;border:0;color:var(--ink-3);font-family:var(--mono);font-size:11px;
-    letter-spacing:.08em;cursor:pointer;padding:0;transition:color .18s}
+  .link{background:none;border:0;color:var(--ink-3);font-family:var(--mono);font-size:13px;
+    letter-spacing:.04em;cursor:pointer;padding:2px 0;transition:color .18s}
   .link:hover{color:var(--gold-2)}
 
   /* ---------- drawer ---------- */
@@ -1550,6 +1551,7 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
 .panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 14px 18px; border-bottom: 1px solid var(--hair); }
 .panel-head h3 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 19px; letter-spacing: 0.03em; }
 .panel-head .meta { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; color: var(--ink-3); }
+.panel-head .head-side { display: flex; align-items: baseline; gap: 12px; }
 .panel-body { padding: 4px 18px 12px; }
 .ditem { padding: 10px 0px; border-bottom: 1px dashed var(--hair); }
 .ditem:last-child { border-bottom: 0px; }
@@ -1664,7 +1666,7 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
 .empty p { margin: 0px; color: var(--ink-3); font-size: 13.5px; }
 .page-foot { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 34px; padding-top: 16px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--ink-3); }
 .page-foot .links { display: flex; gap: 14px; }
-.link { background: none; border: 0px; color: var(--ink-3); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; cursor: pointer; padding: 0px; transition: color 0.18s; }
+.link { background: none; border: 0px; color: var(--ink-3); font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em; cursor: pointer; padding: 2px 0px; transition: color 0.18s; }
 .link:hover { color: var(--gold-2); }
 .scrim { position: fixed; inset: 0px; z-index: 50; background: var(--scrim); backdrop-filter: blur(3px); opacity: 0; pointer-events: none; transition: opacity 0.35s; }
 .scrim.on { opacity: 1; pointer-events: auto; }
@@ -1926,7 +1928,7 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
       </div>
     </div>
     <div class="mast-actions">
-      <span class="quote-time" id="quoteTime">行情 11-07 23:24 · 自动15m</span>
+      <span class="quote-time" id="quoteTime">行情 11-07 23:34 · 自动15m</span>
       <button class="btn theme-btn" id="themeBtn" aria-label="切换深色 / 浅色" title="切换深色 / 浅色">☀</button>
       <button class="btn" id="refreshBtn" title="刷新行情"><span class="ico">↻</span> <span class="lbl">刷新行情</span></button>
       <button class="btn gold" id="addBtn">＋ 新建记录</button>
@@ -1974,7 +1976,10 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
     <section class="panel" aria-labelledby="revTitle">
       <div class="panel-head">
         <h3 id="revTitle">复盘记录</h3>
-        <span class="meta" id="revCount"></span>
+        <div class="head-side">
+          <span class="meta" id="revCount"></span>
+          <button type="button" class="link" id="revExport">导出复盘</button>
+        </div>
       </div>
       <form class="rev-form" id="revForm" autocomplete="off">
         <input type="date" id="revDate" aria-label="复盘日期">
@@ -3369,17 +3374,40 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
   });
 
   /* ---------- import / export ---------- */
-  $('#exportBtn').addEventListener('click', function(){
-    if (!items.length && !reviews.length) { toast('还没有可导出的记录'); return; }
-    var payload = { version: 1, exportedAt: new Date().toISOString(), items: items, reviews: reviews };
-    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+  function saveFile(text, name, mime){
+    var blob = new Blob([text], { type: mime });
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
     a.href = url;
-    a.download = 'position-ledger-' + todayISO() + '.json';
+    a.download = name;
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(function(){ URL.revokeObjectURL(url); }, 400);
+  }
+
+  $('#exportBtn').addEventListener('click', function(){
+    if (!items.length && !reviews.length) { toast('还没有可导出的记录'); return; }
+    var payload = { version: 1, exportedAt: new Date().toISOString(), items: items, reviews: reviews };
+    saveFile(JSON.stringify(payload, null, 2), 'position-ledger-' + todayISO() + '.json', 'application/json');
     toast('已导出 ' + items.length + ' 条记录');
+  });
+
+  /* 复盘导出为 Markdown 文本（按日期倒序） */
+  $('#revExport').addEventListener('click', function(){
+    if (!reviews.length) { toast('还没有复盘可导出'); return; }
+    var list = reviews.slice().sort(function(a, b){
+      var da = String(a.date || ''), db = String(b.date || '');
+      if (da !== db) return db.localeCompare(da);
+      return (a.createdAt || 0) - (b.createdAt || 0);
+    });
+    var lines = ['# 复盘记录', ''];
+    list.forEach(function(r){
+      lines.push('## ' + (r.date || ''));
+      lines.push('');
+      lines.push(String(r.text || '').trim());
+      lines.push('');
+    });
+    saveFile(lines.join('\n'), 'kankan-review-' + todayISO() + '.md', 'text/markdown;charset=utf-8');
+    toast('已导出 ' + reviews.length + ' 条复盘');
   });
 
   $('#importBtn').addEventListener('click', function(){ $('#importFile').click(); });
