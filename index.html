@@ -391,8 +391,14 @@
   .fill.done{background:linear-gradient(90deg,var(--up-dim),var(--up))}
   @keyframes grow{to{width:var(--w,0%)}}
 
+  /* 离场后区间 */
+  .range-line{margin-top:9px;padding:6px 10px;border:1px dashed var(--hair);border-radius:8px;
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;color:var(--ink-2);line-height:1.5}
+  .range-line.dim{color:var(--ink-3)}
+
   /* 底部工具条 */
   .card-foot{display:flex;align-items:center;gap:5px;margin-top:9px;padding-top:7px;border-top:1px solid var(--hair)}
+  .hold-time{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--gold-2);margin-right:3px;flex:none}
   .mini{
     border:1px solid var(--line);background:transparent;color:var(--ink-3);cursor:pointer;
     font-family:var(--sans);font-size:11px;padding:3px 8px;border-radius:6px;
@@ -1625,7 +1631,10 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
 @keyframes grow { 
   100% { width: var(--w,0%); }
 }
+.range-line { margin-top: 9px; padding: 6px 10px; border: 1px dashed var(--hair); border-radius: 8px; font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.02em; color: var(--ink-2); line-height: 1.5; }
+.range-line.dim { color: var(--ink-3); }
 .card-foot { display: flex; align-items: center; gap: 5px; margin-top: 9px; padding-top: 7px; border-top: 1px solid var(--hair); }
+.hold-time { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.04em; color: var(--gold-2); margin-right: 3px; flex: 0 0 auto; }
 .mini { border: 1px solid var(--line); background: transparent; color: var(--ink-3); cursor: pointer; font-family: var(--sans); font-size: 11px; padding: 3px 8px; border-radius: 6px; transition: 0.16s; white-space: nowrap; }
 .mini:hover { color: var(--ink); border-color: var(--line-2); background: var(--surface-2); }
 .mini.on { color: var(--gold-2); border-color: var(--gold-line); background: var(--gold-dim); }
@@ -1924,7 +1933,7 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
       </div>
     </div>
     <div class="mast-actions">
-      <span class="quote-time" id="quoteTime"></span>
+      <span class="quote-time" id="quoteTime">行情 11-08 16:34 · 自动15m</span>
       <button class="btn theme-btn" id="themeBtn" aria-label="切换深色 / 浅色" title="切换深色 / 浅色">☀</button>
       <button class="btn" id="refreshBtn" title="刷新行情"><span class="ico">↻</span> <span class="lbl">刷新行情</span></button>
       <button class="btn gold" id="addBtn">＋ 新建记录</button>
@@ -1997,11 +2006,11 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
     </div>
     <div class="stat hot">
       <span class="k">已回本</span>
-      <span class="v" id="sDone">0<small>笔</small></span>
+      <span class="v" id="sDone">2<small>笔</small></span>
     </div>
     <div class="stat">
       <span class="k">平均回本进度</span>
-      <span class="v" id="sAvg">0<small>%</small></span>
+      <span class="v" id="sAvg">110<small>%</small></span>
     </div>
   </section>
 
@@ -2011,14 +2020,14 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
       <input type="search" id="searchInput" placeholder="搜索名称 / 代码 / 离场要求 / 复盘…" aria-label="搜索记录">
     </label>
     <div class="chips" id="chips" role="tablist" aria-label="筛选">
-      <button class="chip on" data-filter="all" role="tab">全部<span class="n" data-c="all">0</span></button>
+      <button class="chip on" data-filter="all" role="tab">全部<span class="n" data-c="all">2</span></button>
       <button class="chip" data-filter="holding" role="tab">持仓<span class="n" data-c="holding">0</span></button>
-      <button class="chip" data-filter="closed" role="tab">已离场<span class="n" data-c="closed">0</span></button>
-      <button class="chip" data-filter="done" role="tab">已回本<span class="n" data-c="done">0</span></button>
+      <button class="chip" data-filter="closed" role="tab">已离场<span class="n" data-c="closed">2</span></button>
+      <button class="chip" data-filter="done" role="tab">已回本<span class="n" data-c="done">2</span></button>
     </div>
   </section>
 
-  <main id="list"><div class="empty"><div class="glyph">▤</div><h3>台账还是空的</h3><p>点右上角「新建记录」，把第一笔交易写进来。</p></div></main>
+  <main id="list"><article class="card" data-id="9eim3psr4u" data-status="closed" style="--i:0"><div class="card-head"><span class="idx">01</span><h2>浙能电力</h2><span class="code">600023.SH</span><span class="badge closed">已离场 · 回本</span></div><div class="readout"><div class="cell"><span class="k">买入价</span><span class="v">4.91</span><span class="sub">2026-01-19</span></div><div class="cell"><span class="k">离场价格</span><span class="v">5.43</span><span class="sub">3月3日 离场</span></div><div class="cell pnl up"><span class="k">收益/股</span><span class="v">+0.52</span><span class="sub">+10.59%</span></div></div><div class="range-line">3月3日 至今 · 最高 6.47（05/19）· 最低 4.63（07/15）</div><div class="ratio"><span class="k">回本</span><div class="track"><div class="fill done" style="--w:100.0%"></div></div><span class="p done">110%</span></div><div class="card-foot"><span class="hold-time">共持有 1 个月零 13 天</span><button class="mini" data-act="detail">详情</button><button class="mini" data-act="addlog">＋收盘</button><span class="spacer"></span><button class="mini" data-act="edit">编辑</button><button class="mini danger" data-act="del">删除</button></div><div class="detail" data-body="detail" hidden=""><div class="d-block"><span class="k">离场收益</span><p class="review-note up">+0.52/股 · +10.59%</p></div><div class="d-block"><span class="k">离场要求</span><p class="exit-note empty">未设置离场条件</p></div><div class="d-block" data-role="logadd"><button class="mini" data-act="addlog">＋ 记一笔收盘</button></div></div></article><article class="card" data-id="0jmuqqmq1v" data-status="closed" style="--i:1"><div class="card-head"><span class="idx">02</span><h2>浙能电力</h2><span class="code">600023.SH</span><span class="badge closed">已离场 · 回本</span></div><div class="readout"><div class="cell"><span class="k">买入价</span><span class="v">4.91</span><span class="sub">2026-01-19</span></div><div class="cell"><span class="k">离场价格</span><span class="v">5.43</span><span class="sub">3月3日 离场</span></div><div class="cell pnl up"><span class="k">收益/股</span><span class="v">+0.52</span><span class="sub">+10.59%</span></div></div><div class="range-line">3月3日 至今 · 最高 6.47（05/19）· 最低 4.63（07/15）</div><div class="ratio"><span class="k">回本</span><div class="track"><div class="fill done" style="--w:100.0%"></div></div><span class="p done">111%</span></div><div class="card-foot"><span class="hold-time">共持有 1 个月零 13 天</span><button class="mini" data-act="detail">详情</button><button class="mini" data-act="addlog">＋收盘</button><span class="spacer"></span><button class="mini" data-act="edit">编辑</button><button class="mini danger" data-act="del">删除</button></div><div class="detail" data-body="detail" hidden=""><div class="d-block"><span class="k">离场收益</span><p class="review-note up">+52.00 合计（+0.52/股 · +10.59%）</p></div><div class="d-block"><span class="k">回本口径 · 按金额</span><p class="review-note">已回收 543.00 / 成本 491.00</p></div><div class="d-block"><span class="k">离场要求</span><p class="exit-note empty">未设置离场条件</p></div><div class="d-block" data-role="logadd"><button class="mini" data-act="addlog">＋ 记一笔收盘</button></div></div></article></main>
   </div>
 
   <footer class="page-foot">
@@ -2158,6 +2167,25 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
   function cnDate(iso){
     var p = String(iso || '').split('-');
     return p.length === 3 ? (Number(p[1]) + '月' + Number(p[2]) + '日') : (iso || '—');
+  }
+  /* 持有时间：持仓算到今天，已离场算到离场日期 */
+  function holdText(it){
+    var from = it.buyDate;
+    if (!from) return '';
+    var to = (it.status === 'closed' && it.exitDate) ? it.exitDate : todayISO();
+    var a = new Date(from + 'T00:00:00'), b = new Date(to + 'T00:00:00');
+    if (isNaN(a) || isNaN(b) || b < a) return '';
+    var days = Math.round((b - a) / 86400000);
+    var label = it.status === 'closed' ? '共持有 ' : '持有 ';
+    if (days >= 365) {
+      var y = Math.floor(days / 365), m = Math.floor((days % 365) / 30);
+      return label + y + ' 年' + (m ? ' ' + m + ' 个月' : '');
+    }
+    if (days >= 31) {
+      var m2 = Math.floor(days / 30), d2 = days % 30;
+      return label + m2 + ' 个月' + (d2 ? '零 ' + d2 + ' 天' : '');
+    }
+    return label + days + ' 天';
   }
 
   function toast(msg){
@@ -2580,6 +2608,23 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
       (it.review ? '<div class="d-block"><span class="k">复盘</span><p class="review-note">' + esc(it.review) + '</p></div>' : '') +
       '</div>';
 
+    /* 已离场：离场日期至今的区间最高 / 最低（刷新行情时更新） */
+    var rangeHTML = '';
+    if (closed) {
+      var rs = it.rangeStat;
+      var rtxt;
+      if (!it.exitDate) {
+        rtxt = '离场后区间：填写离场日期后可统计';
+      } else if (rs) {
+        rtxt = cnDate(it.exitDate) + ' 至今 · 最高 ' + rs.hi.toFixed(2) + '（' + dayMonth(rs.hiDate) + '）· 最低 ' + rs.lo.toFixed(2) + '（' + dayMonth(rs.loDate) + '）';
+      } else if (it.rangeFail) {
+        rtxt = '离场后区间：行情获取失败，稍后再刷新';
+      } else {
+        rtxt = '离场后区间：点「刷新行情」计算';
+      }
+      rangeHTML = '<div class="range-line' + (rs ? '' : ' dim') + '">' + esc(rtxt) + '</div>';
+    }
+
     return '' +
       '<article class="card" data-id="' + esc(it.id) + '" data-status="' + (closed ? 'closed' : 'holding') + '" style="--i:' + i + '">' +
         '<div class="card-head">' +
@@ -2593,12 +2638,14 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
           '<div class="cell"><span class="k">' + esc(midLabel) + '</span><span class="v">' + esc(midV) + '</span><span class="sub' + midCls + '">' + esc(midSub) + '</span></div>' +
           '<div class="cell pnl ' + pcls + '"><span class="k">' + (useExit ? '收益/股' : '盈亏/股') + '</span><span class="v">' + esc(pnlTxt) + '</span><span class="sub">' + esc(pnlSub) + '</span></div>' +
         '</div>' +
+        rangeHTML +
         '<div class="ratio">' +
           '<span class="k">回本</span>' +
           '<div class="track"><div class="fill' + (done ? ' done' : '') + '" style="--w:' + w + '%"></div></div>' +
           '<span class="p' + (done ? ' done' : '') + '">' + fmtRatio(ratio) + '%</span>' +
         '</div>' +
         '<div class="card-foot">' +
+          (holdText(it) ? '<span class="hold-time">' + esc(holdText(it)) + '</span>' : '') +
           '<button class="mini' + (open ? ' on' : '') + '" data-act="detail">详情' + (logs.length ? '<span class="n">' + logs.length + '</span>' : '') + '</button>' +
           '<button class="mini" data-act="addlog">＋收盘</button>' +
           '<span class="spacer"></span>' +
@@ -3022,7 +3069,7 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
   }
 
   /* ---------- 日K（用于走势点评） ---------- */
-  function jsonpKline(secid, cb){
+  function jsonpKline(secid, cb, beg){
     qSeq++;
     var cbName = 'emk' + qSeq + '_' + (Date.now() % 9973);
     var done = false;
@@ -3042,7 +3089,7 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
 
     s.onerror = function(){ finish(null); };
     s.src = 'https://push2his.eastmoney.com/api/qt/stock/kline/get?secid=' + encodeURIComponent(secid) +
-      '&klt=101&fqt=1&lmt=30&end=20500101&fields1=f1,f2&fields2=f51,f53,f54,f55,f59&cb=' + cbName + '&_=' + Date.now();
+      '&klt=101&fqt=1&' + (beg ? 'beg=' + beg + '&lmt=600' : 'lmt=30') + '&end=20500101&fields1=f1,f2&fields2=f51,f53,f54,f55,f59&cb=' + cbName + '&_=' + Date.now();
     document.head.appendChild(s);
   }
 
@@ -3093,15 +3140,59 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
     })();
   }
 
+  /* ---------- 离场后区间：离场日期至今的最高 / 最低 ---------- */
+  function parseRangeStats(d, fromISO){
+    if (!d || !d.data || !Array.isArray(d.data.klines)) return null;
+    var rows = d.data.klines.map(function(line){
+      var p = String(line).split(',');
+      return { date: p[0], high: num(p[2]), low: num(p[3]) };
+    }).filter(function(r){ return r.high > 0 && (!fromISO || r.date >= fromISO); });
+    if (!rows.length) return null;
+    var hi = rows[0], lo = rows[0];
+    rows.forEach(function(r){
+      if (r.high > hi.high) hi = r;
+      if (r.low < lo.low) lo = r;
+    });
+    return { hi: hi.high, hiDate: hi.date, lo: lo.low, loDate: lo.date, n: rows.length, fetchedAt: Date.now() };
+  }
+
+  function fetchRangeFor(it, cb){
+    if (!it.exitDate) { cb(null); return; }
+    var beg = it.exitDate.replace(/-/g, '');
+    var ids = secidsFor(it.code);
+    if (!ids.length) { cb(null); return; }
+    var i = 0;
+    (function step(){
+      if (i >= ids.length) { cb(null); return; }
+      var id = ids[i++];
+      jsonpKline(id, function(d){
+        var r = parseRangeStats(d, it.exitDate);
+        if (r) cb(r); else step();
+      }, beg);
+    })();
+  }
+
+  /* 持仓取日K用于走势点评；已离场取离场日期至今的区间最高/最低 */
+  function fetchAfterQuote(it, done){
+    if (it.status === 'closed' && it.exitDate) {
+      fetchRangeFor(it, function(r){
+        if (r) { it.rangeStat = r; delete it.rangeFail; } else { it.rangeFail = true; }
+        done();
+      });
+    } else {
+      fetchTrendFor(it.code, function(t){
+        if (t) { it.trend = t; delete it.trendFail; } else { it.trendFail = true; }
+        done();
+      });
+    }
+  }
+
   function refreshOne(it){
     fetchQuoteFor(it.code, function(q){
       if (q) { it.quote = q; delete it.quoteFail; }
       else { it.quoteFail = true; }
       it.quoteAt = Date.now();
-      fetchTrendFor(it.code, function(t){
-        if (t) { it.trend = t; delete it.trendFail; } else { it.trendFail = true; }
-        persist(); render();
-      });
+      fetchAfterQuote(it, function(){ persist(); render(); });
     });
   }
 
@@ -3158,8 +3249,7 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
             if (q) { it.quote = q; delete it.quoteFail; }
             else { it.quoteFail = true; }
             it.quoteAt = Date.now();
-            fetchTrendFor(it.code, function(t){
-              if (t) { it.trend = t; delete it.trendFail; } else { it.trendFail = true; }
+            fetchAfterQuote(it, function(){
               active--; finished++;
               if (finished >= total) finishAll(); else pump();
             });
@@ -3268,6 +3358,8 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
     if (editingId) {
       var it = items.find(function(x){ return x.id === editingId; });
       if (it) {
+        /* 离场日期或代码变了，旧的区间统计作废，等下次刷新重算 */
+        if (it.exitDate !== payload.exitDate || it.code !== payload.code) delete it.rangeStat;
         Object.keys(payload).forEach(function(k){ it[k] = payload[k]; });
         updated(it);
       }
