@@ -15,6 +15,18 @@
     } catch (e) {}
   })();
 </script>
+<script>
+  /* 发布版首次打开：清掉旧数据，保证从空白开始 */
+  (function(){
+    try {
+      if (!localStorage.getItem('kankan.seeded')) {
+        localStorage.removeItem('kankan.v1');
+        localStorage.removeItem('kankan.reviews.v1');
+        localStorage.setItem('kankan.seeded', '1');
+      }
+    } catch (e) {}
+  })();
+</script>
 <style>
   :root{
     color-scheme: dark;
@@ -1938,7 +1950,7 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
       </div>
     </div>
     <div class="mast-actions">
-      <span class="quote-time" id="quoteTime">行情 11-08 16:57 · 自动15m</span>
+      <span class="quote-time" id="quoteTime"></span>
       <button class="btn theme-btn" id="themeBtn" aria-label="切换深色 / 浅色" title="切换深色 / 浅色">☀</button>
       <button class="btn" id="refreshBtn" title="刷新行情"><span class="ico">↻</span> <span class="lbl">刷新行情</span></button>
       <button class="btn gold" id="addBtn">＋ 新建记录</button>
@@ -1955,32 +1967,32 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
     <section class="stats four" aria-label="持仓概览">
       <div class="stat">
         <span class="k">持仓</span>
-        <span class="v" id="hCount">1<small>笔</small></span>
+        <span class="v" id="hCount">0<small>笔</small></span>
       </div>
       <div class="stat">
         <span class="k">总市值</span>
-        <span class="v" id="hValue">1,892.00</span>
+        <span class="v" id="hValue">—</span>
       </div>
       <div class="stat">
         <span class="k">浮动盈亏</span>
-        <span class="v" id="hPnl" style="color: var(--up);">+14.00<small>+0.75%</small></span>
+        <span class="v" id="hPnl">—</span>
       </div>
       <div class="stat hot">
         <span class="k">今日盈亏</span>
-        <span class="v" id="hToday" style="color: var(--up);">+41.00</span>
+        <span class="v" id="hToday">—</span>
       </div>
     </section>
     <div class="hold-head" aria-hidden="true">
       <span>名称</span><span>现价</span><span>买入</span><span>股数</span><span>市值</span><span>浮动盈亏</span><span>回本</span>
     </div>
-    <div id="holdList"><div class="hrow" data-id="3jrl0c9s3r" style="--i:0" role="button" tabindex="0"><div class="h-name"><h2>特变电工<span class="code">600089.SH</span></h2></div><div class="h-cell"><span class="k">现价</span><span class="v">18.92</span></div><div class="h-cell hide-m"><span class="k">买入</span><span class="v">18.78</span></div><div class="h-cell hide-m"><span class="k">股数</span><span class="v">100</span></div><div class="h-cell hide-m"><span class="k">市值</span><span class="v">1,892.00</span></div><div class="h-cell h-pnl up"><span class="k">浮动盈亏</span><span class="v">+14.00</span><span class="sub">+0.75%</span></div><div class="h-ratio"><div class="track"><div class="fill done" style="--w:100.0%"></div></div><span class="p done">101%</span></div><div class="h-meta"><b>持有 2 个月零 7 天</b> · 最高 19.29（09/09）· 最低 16.78（10/15）</div></div></div>
+    <div id="holdList"><div class="empty"><div class="glyph">▤</div><h3>暂无持仓</h3><p>去「台账」新建一笔，这里就会汇总你的仓位。</p></div></div>
 
     <section class="panel" aria-labelledby="todayTitle">
       <div class="panel-head">
         <h3 id="todayTitle">今日表现</h3>
-        <span class="meta" id="todayMeta">11-08 · 1 只持仓 · 涨 1 跌 0 · 今日 +41.00</span>
+        <span class="meta" id="todayMeta">11-08 · 0 只持仓</span>
       </div>
-      <div class="panel-body" id="todayList"><div class="ditem"><div class="drow"><div class="dname"><h4>特变电工</h4><span class="code">600089.SH</span></div><div class="dcell up"><span class="k">今日涨跌</span>+2.22%</div><div class="dcell num up"><span class="k">今日盈亏</span>+41.00</div></div><p class="d-note">均线多头排列、股价站在所有均线上方，短线趋势偏强；近 5 日累计涨 8.9%，动能较强，未来几日在 18.22（5 日线）之上偏多，站稳可看 19.16 压力；失守则转为震荡。</p></div><p class="d-foot">以上按日 K 均线与近期高低点推演，仅供参考。</p></div>
+      <div class="panel-body" id="todayList"><p class="d-empty">暂无持仓，先去「台账」新建一笔。</p></div>
     </section>
 
     <section class="panel" aria-labelledby="revTitle">
@@ -2007,15 +2019,15 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
   <section class="stats" aria-label="概览">
     <div class="stat">
       <span class="k">在册持仓</span>
-      <span class="v" id="sHolding">1<small>笔</small></span>
+      <span class="v" id="sHolding">0<small>笔</small></span>
     </div>
     <div class="stat hot">
       <span class="k">已回本</span>
-      <span class="v" id="sDone">1<small>笔</small></span>
+      <span class="v" id="sDone">0<small>笔</small></span>
     </div>
     <div class="stat">
       <span class="k">平均回本进度</span>
-      <span class="v" id="sAvg">101<small>%</small></span>
+      <span class="v" id="sAvg">0<small>%</small></span>
     </div>
   </section>
 
@@ -2025,14 +2037,14 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
       <input type="search" id="searchInput" placeholder="搜索名称 / 代码 / 离场要求 / 复盘…" aria-label="搜索记录">
     </label>
     <div class="chips" id="chips" role="tablist" aria-label="筛选">
-      <button class="chip on" data-filter="all" role="tab">全部<span class="n" data-c="all">1</span></button>
-      <button class="chip" data-filter="holding" role="tab">持仓<span class="n" data-c="holding">1</span></button>
+      <button class="chip on" data-filter="all" role="tab">全部<span class="n" data-c="all">0</span></button>
+      <button class="chip" data-filter="holding" role="tab">持仓<span class="n" data-c="holding">0</span></button>
       <button class="chip" data-filter="closed" role="tab">已离场<span class="n" data-c="closed">0</span></button>
-      <button class="chip" data-filter="done" role="tab">已回本<span class="n" data-c="done">1</span></button>
+      <button class="chip" data-filter="done" role="tab">已回本<span class="n" data-c="done">0</span></button>
     </div>
   </section>
 
-  <main id="list"><article class="card" data-id="3jrl0c9s3r" data-status="holding" style="--i:0"><div class="card-head"><span class="idx">01</span><h2>特变电工</h2><span class="code">600089.SH</span><span class="badge done">已回本</span></div><div class="readout"><div class="cell"><span class="k">买入价</span><span class="v">18.78</span><span class="sub">2026-09-02</span></div><div class="cell"><span class="k">当日收盘</span><span class="v">18.92</span><span class="sub up">今 +2.22%</span></div><div class="cell pnl up"><span class="k">盈亏/股</span><span class="v">+0.14</span><span class="sub">+0.75%</span></div></div><div class="range-line">9月2日 至今 · 最高 19.29（09/09）· 最低 16.78（10/15）</div><div class="ratio"><span class="k">回本</span><div class="track"><div class="fill done" style="--w:100.0%"></div></div><span class="p done">101%</span></div><div class="card-foot"><span class="hold-time">持有 2 个月零 7 天</span><button class="mini" data-act="detail">详情</button><button class="mini" data-act="addlog">＋收盘</button><span class="spacer"></span><button class="mini" data-act="edit">编辑</button><button class="mini danger" data-act="del">删除</button></div><div class="detail" data-body="detail" hidden=""><div class="d-block"><span class="k">离场要求</span><p class="exit-note empty">未设置离场条件</p></div><div class="d-block" data-role="logadd"><button class="mini" data-act="addlog">＋ 记一笔收盘</button></div></div></article></main>
+  <main id="list"><div class="empty"><div class="glyph">▤</div><h3>台账还是空的</h3><p>点右上角「新建记录」，把第一笔交易写进来。</p></div></main>
   </div>
 
   <footer class="page-foot">
