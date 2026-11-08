@@ -234,6 +234,9 @@
   .h-ratio .track{flex:1;height:3px;border-radius:99px;background:var(--track);overflow:hidden}
   .h-ratio .p{font-family:var(--mono);font-size:10.5px;color:var(--gold-2);flex:none;min-width:34px;text-align:right}
   .h-ratio .p.done{color:var(--up)}
+  .h-meta{grid-column:1/-1;font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;color:var(--ink-3);
+    border-top:1px solid var(--hair);padding-top:7px;margin-top:-2px}
+  .h-meta b{font-weight:500;color:var(--gold-2)}
   .hold-note{margin:10px 2px 0;font-size:11px;color:var(--ink-3)}
 
   /* ---------- 首页 · 今日表现 / 复盘 ---------- */
@@ -1550,6 +1553,8 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
 .h-ratio .track { flex: 1 1 0%; height: 3px; border-radius: 99px; background: var(--track); overflow: hidden; }
 .h-ratio .p { font-family: var(--mono); font-size: 10.5px; color: var(--gold-2); flex: 0 0 auto; min-width: 34px; text-align: right; }
 .h-ratio .p.done { color: var(--up); }
+.h-meta { grid-column: 1 / -1; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.03em; color: var(--ink-3); border-top: 1px solid var(--hair); padding-top: 7px; margin-top: -2px; }
+.h-meta b { font-weight: 500; color: var(--gold-2); }
 .hold-note { margin: 10px 2px 0px; font-size: 11px; color: var(--ink-3); }
 .panel { margin-top: 22px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--card-grad); }
 .panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 14px 18px; border-bottom: 1px solid var(--hair); }
@@ -1933,7 +1938,7 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
       </div>
     </div>
     <div class="mast-actions">
-      <span class="quote-time" id="quoteTime">行情 11-08 16:34 · 自动15m</span>
+      <span class="quote-time" id="quoteTime">行情 11-08 16:57 · 自动15m</span>
       <button class="btn theme-btn" id="themeBtn" aria-label="切换深色 / 浅色" title="切换深色 / 浅色">☀</button>
       <button class="btn" id="refreshBtn" title="刷新行情"><span class="ico">↻</span> <span class="lbl">刷新行情</span></button>
       <button class="btn gold" id="addBtn">＋ 新建记录</button>
@@ -1950,32 +1955,32 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
     <section class="stats four" aria-label="持仓概览">
       <div class="stat">
         <span class="k">持仓</span>
-        <span class="v" id="hCount">0<small>笔</small></span>
+        <span class="v" id="hCount">1<small>笔</small></span>
       </div>
       <div class="stat">
         <span class="k">总市值</span>
-        <span class="v" id="hValue">—</span>
+        <span class="v" id="hValue">1,892.00</span>
       </div>
       <div class="stat">
         <span class="k">浮动盈亏</span>
-        <span class="v" id="hPnl">—</span>
+        <span class="v" id="hPnl" style="color: var(--up);">+14.00<small>+0.75%</small></span>
       </div>
       <div class="stat hot">
         <span class="k">今日盈亏</span>
-        <span class="v" id="hToday">—</span>
+        <span class="v" id="hToday" style="color: var(--up);">+41.00</span>
       </div>
     </section>
     <div class="hold-head" aria-hidden="true">
       <span>名称</span><span>现价</span><span>买入</span><span>股数</span><span>市值</span><span>浮动盈亏</span><span>回本</span>
     </div>
-    <div id="holdList"><div class="empty"><div class="glyph">▤</div><h3>暂无持仓</h3><p>去「台账」新建一笔，这里就会汇总你的仓位。</p></div></div>
+    <div id="holdList"><div class="hrow" data-id="3jrl0c9s3r" style="--i:0" role="button" tabindex="0"><div class="h-name"><h2>特变电工<span class="code">600089.SH</span></h2></div><div class="h-cell"><span class="k">现价</span><span class="v">18.92</span></div><div class="h-cell hide-m"><span class="k">买入</span><span class="v">18.78</span></div><div class="h-cell hide-m"><span class="k">股数</span><span class="v">100</span></div><div class="h-cell hide-m"><span class="k">市值</span><span class="v">1,892.00</span></div><div class="h-cell h-pnl up"><span class="k">浮动盈亏</span><span class="v">+14.00</span><span class="sub">+0.75%</span></div><div class="h-ratio"><div class="track"><div class="fill done" style="--w:100.0%"></div></div><span class="p done">101%</span></div><div class="h-meta"><b>持有 2 个月零 7 天</b> · 最高 19.29（09/09）· 最低 16.78（10/15）</div></div></div>
 
     <section class="panel" aria-labelledby="todayTitle">
       <div class="panel-head">
         <h3 id="todayTitle">今日表现</h3>
-        <span class="meta" id="todayMeta">11-08 · 0 只持仓</span>
+        <span class="meta" id="todayMeta">11-08 · 1 只持仓 · 涨 1 跌 0 · 今日 +41.00</span>
       </div>
-      <div class="panel-body" id="todayList"><p class="d-empty">暂无持仓，先去「台账」新建一笔。</p></div>
+      <div class="panel-body" id="todayList"><div class="ditem"><div class="drow"><div class="dname"><h4>特变电工</h4><span class="code">600089.SH</span></div><div class="dcell up"><span class="k">今日涨跌</span>+2.22%</div><div class="dcell num up"><span class="k">今日盈亏</span>+41.00</div></div><p class="d-note">均线多头排列、股价站在所有均线上方，短线趋势偏强；近 5 日累计涨 8.9%，动能较强，未来几日在 18.22（5 日线）之上偏多，站稳可看 19.16 压力；失守则转为震荡。</p></div><p class="d-foot">以上按日 K 均线与近期高低点推演，仅供参考。</p></div>
     </section>
 
     <section class="panel" aria-labelledby="revTitle">
@@ -2002,15 +2007,15 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
   <section class="stats" aria-label="概览">
     <div class="stat">
       <span class="k">在册持仓</span>
-      <span class="v" id="sHolding">0<small>笔</small></span>
+      <span class="v" id="sHolding">1<small>笔</small></span>
     </div>
     <div class="stat hot">
       <span class="k">已回本</span>
-      <span class="v" id="sDone">2<small>笔</small></span>
+      <span class="v" id="sDone">1<small>笔</small></span>
     </div>
     <div class="stat">
       <span class="k">平均回本进度</span>
-      <span class="v" id="sAvg">110<small>%</small></span>
+      <span class="v" id="sAvg">101<small>%</small></span>
     </div>
   </section>
 
@@ -2020,14 +2025,14 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
       <input type="search" id="searchInput" placeholder="搜索名称 / 代码 / 离场要求 / 复盘…" aria-label="搜索记录">
     </label>
     <div class="chips" id="chips" role="tablist" aria-label="筛选">
-      <button class="chip on" data-filter="all" role="tab">全部<span class="n" data-c="all">2</span></button>
-      <button class="chip" data-filter="holding" role="tab">持仓<span class="n" data-c="holding">0</span></button>
-      <button class="chip" data-filter="closed" role="tab">已离场<span class="n" data-c="closed">2</span></button>
-      <button class="chip" data-filter="done" role="tab">已回本<span class="n" data-c="done">2</span></button>
+      <button class="chip on" data-filter="all" role="tab">全部<span class="n" data-c="all">1</span></button>
+      <button class="chip" data-filter="holding" role="tab">持仓<span class="n" data-c="holding">1</span></button>
+      <button class="chip" data-filter="closed" role="tab">已离场<span class="n" data-c="closed">0</span></button>
+      <button class="chip" data-filter="done" role="tab">已回本<span class="n" data-c="done">1</span></button>
     </div>
   </section>
 
-  <main id="list"><article class="card" data-id="9eim3psr4u" data-status="closed" style="--i:0"><div class="card-head"><span class="idx">01</span><h2>浙能电力</h2><span class="code">600023.SH</span><span class="badge closed">已离场 · 回本</span></div><div class="readout"><div class="cell"><span class="k">买入价</span><span class="v">4.91</span><span class="sub">2026-01-19</span></div><div class="cell"><span class="k">离场价格</span><span class="v">5.43</span><span class="sub">3月3日 离场</span></div><div class="cell pnl up"><span class="k">收益/股</span><span class="v">+0.52</span><span class="sub">+10.59%</span></div></div><div class="range-line">3月3日 至今 · 最高 6.47（05/19）· 最低 4.63（07/15）</div><div class="ratio"><span class="k">回本</span><div class="track"><div class="fill done" style="--w:100.0%"></div></div><span class="p done">110%</span></div><div class="card-foot"><span class="hold-time">共持有 1 个月零 13 天</span><button class="mini" data-act="detail">详情</button><button class="mini" data-act="addlog">＋收盘</button><span class="spacer"></span><button class="mini" data-act="edit">编辑</button><button class="mini danger" data-act="del">删除</button></div><div class="detail" data-body="detail" hidden=""><div class="d-block"><span class="k">离场收益</span><p class="review-note up">+0.52/股 · +10.59%</p></div><div class="d-block"><span class="k">离场要求</span><p class="exit-note empty">未设置离场条件</p></div><div class="d-block" data-role="logadd"><button class="mini" data-act="addlog">＋ 记一笔收盘</button></div></div></article><article class="card" data-id="0jmuqqmq1v" data-status="closed" style="--i:1"><div class="card-head"><span class="idx">02</span><h2>浙能电力</h2><span class="code">600023.SH</span><span class="badge closed">已离场 · 回本</span></div><div class="readout"><div class="cell"><span class="k">买入价</span><span class="v">4.91</span><span class="sub">2026-01-19</span></div><div class="cell"><span class="k">离场价格</span><span class="v">5.43</span><span class="sub">3月3日 离场</span></div><div class="cell pnl up"><span class="k">收益/股</span><span class="v">+0.52</span><span class="sub">+10.59%</span></div></div><div class="range-line">3月3日 至今 · 最高 6.47（05/19）· 最低 4.63（07/15）</div><div class="ratio"><span class="k">回本</span><div class="track"><div class="fill done" style="--w:100.0%"></div></div><span class="p done">111%</span></div><div class="card-foot"><span class="hold-time">共持有 1 个月零 13 天</span><button class="mini" data-act="detail">详情</button><button class="mini" data-act="addlog">＋收盘</button><span class="spacer"></span><button class="mini" data-act="edit">编辑</button><button class="mini danger" data-act="del">删除</button></div><div class="detail" data-body="detail" hidden=""><div class="d-block"><span class="k">离场收益</span><p class="review-note up">+52.00 合计（+0.52/股 · +10.59%）</p></div><div class="d-block"><span class="k">回本口径 · 按金额</span><p class="review-note">已回收 543.00 / 成本 491.00</p></div><div class="d-block"><span class="k">离场要求</span><p class="exit-note empty">未设置离场条件</p></div><div class="d-block" data-role="logadd"><button class="mini" data-act="addlog">＋ 记一笔收盘</button></div></div></article></main>
+  <main id="list"><article class="card" data-id="3jrl0c9s3r" data-status="holding" style="--i:0"><div class="card-head"><span class="idx">01</span><h2>特变电工</h2><span class="code">600089.SH</span><span class="badge done">已回本</span></div><div class="readout"><div class="cell"><span class="k">买入价</span><span class="v">18.78</span><span class="sub">2026-09-02</span></div><div class="cell"><span class="k">当日收盘</span><span class="v">18.92</span><span class="sub up">今 +2.22%</span></div><div class="cell pnl up"><span class="k">盈亏/股</span><span class="v">+0.14</span><span class="sub">+0.75%</span></div></div><div class="range-line">9月2日 至今 · 最高 19.29（09/09）· 最低 16.78（10/15）</div><div class="ratio"><span class="k">回本</span><div class="track"><div class="fill done" style="--w:100.0%"></div></div><span class="p done">101%</span></div><div class="card-foot"><span class="hold-time">持有 2 个月零 7 天</span><button class="mini" data-act="detail">详情</button><button class="mini" data-act="addlog">＋收盘</button><span class="spacer"></span><button class="mini" data-act="edit">编辑</button><button class="mini danger" data-act="del">删除</button></div><div class="detail" data-body="detail" hidden=""><div class="d-block"><span class="k">离场要求</span><p class="exit-note empty">未设置离场条件</p></div><div class="d-block" data-role="logadd"><button class="mini" data-act="addlog">＋ 记一笔收盘</button></div></div></article></main>
   </div>
 
   <footer class="page-foot">
@@ -2350,6 +2355,16 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
       var ratio = ratioOf(it);
       var done = ratio >= 100;
 
+      /* 持有时间 + 买入至今区间最高/最低 */
+      var metaParts = [];
+      var ht = holdText(it);
+      if (ht) metaParts.push(ht);
+      var rs = it.rangeStat;
+      if (rs) metaParts.push('最高 ' + rs.hi.toFixed(2) + '（' + dayMonth(rs.hiDate) + '）· 最低 ' + rs.lo.toFixed(2) + '（' + dayMonth(rs.loDate) + '）');
+      var metaHTML = metaParts.length
+        ? '<div class="h-meta">' + metaParts.map(function(p, idx){ return idx === 0 ? '<b>' + esc(p) + '</b>' : esc(p); }).join(' · ') + '</div>'
+        : '';
+
       return '<div class="hrow" data-id="' + esc(it.id) + '" style="--i:' + i + '" role="button" tabindex="0">' +
         '<div class="h-name"><h2>' + esc(it.name || '未命名') + '<span class="code">' + esc(it.code || '') + '</span></h2></div>' +
         '<div class="h-cell"><span class="k">现价</span><span class="v">' + (cur !== null ? esc(cur.toFixed(2)) : '—') + '</span></div>' +
@@ -2359,6 +2374,7 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
         '<div class="h-cell h-pnl ' + pnlCls + '"><span class="k">浮动盈亏</span><span class="v">' + esc(pnlV) + '</span><span class="sub">' + esc(pnlSub) + '</span></div>' +
         '<div class="h-ratio"><div class="track"><div class="fill' + (done ? ' done' : '') + '" style="--w:' + Math.min(100, ratio).toFixed(1) + '%"></div></div>' +
           '<span class="p' + (done ? ' done' : '') + '">' + fmtRatio(ratio) + '%</span></div>' +
+        metaHTML +
       '</div>';
     });
 
@@ -2608,19 +2624,20 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
       (it.review ? '<div class="d-block"><span class="k">复盘</span><p class="review-note">' + esc(it.review) + '</p></div>' : '') +
       '</div>';
 
-    /* 已离场：离场日期至今的区间最高 / 最低（刷新行情时更新） */
+    /* 区间最高/最低：持仓按买入日期至今，已离场按离场日期至今（刷新行情时更新） */
     var rangeHTML = '';
-    if (closed) {
+    var rangeFrom = closed ? it.exitDate : it.buyDate;
+    if (rangeFrom || closed) {
       var rs = it.rangeStat;
       var rtxt;
-      if (!it.exitDate) {
+      if (!rangeFrom) {
         rtxt = '离场后区间：填写离场日期后可统计';
       } else if (rs) {
-        rtxt = cnDate(it.exitDate) + ' 至今 · 最高 ' + rs.hi.toFixed(2) + '（' + dayMonth(rs.hiDate) + '）· 最低 ' + rs.lo.toFixed(2) + '（' + dayMonth(rs.loDate) + '）';
+        rtxt = cnDate(rangeFrom) + ' 至今 · 最高 ' + rs.hi.toFixed(2) + '（' + dayMonth(rs.hiDate) + '）· 最低 ' + rs.lo.toFixed(2) + '（' + dayMonth(rs.loDate) + '）';
       } else if (it.rangeFail) {
-        rtxt = '离场后区间：行情获取失败，稍后再刷新';
+        rtxt = '区间统计：行情获取失败，稍后再刷新';
       } else {
-        rtxt = '离场后区间：点「刷新行情」计算';
+        rtxt = '区间统计：点「刷新行情」计算';
       }
       rangeHTML = '<div class="range-line' + (rs ? '' : ' dim') + '">' + esc(rtxt) + '</div>';
     }
@@ -3158,33 +3175,49 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
 
   function fetchRangeFor(it, cb){
     if (!it.exitDate) { cb(null); return; }
-    var beg = it.exitDate.replace(/-/g, '');
-    var ids = secidsFor(it.code);
+    fetchKlineFrom(it.code, it.exitDate, function(d){
+      cb(d ? parseRangeStats(d, it.exitDate) : null);
+    });
+  }
+
+  /* 从某个日期起拉日K（持仓用买入日期，已离场用离场日期），一次请求同时供区间统计与走势点评 */
+  function fetchKlineFrom(code, fromISO, cb){
+    var beg = fromISO ? fromISO.replace(/-/g, '') : null;
+    var ids = secidsFor(code);
     if (!ids.length) { cb(null); return; }
     var i = 0;
     (function step(){
       if (i >= ids.length) { cb(null); return; }
       var id = ids[i++];
       jsonpKline(id, function(d){
-        var r = parseRangeStats(d, it.exitDate);
-        if (r) cb(r); else step();
+        if (d && d.data && Array.isArray(d.data.klines) && d.data.klines.length) cb(d);
+        else step();
       }, beg);
     })();
   }
 
-  /* 持仓取日K用于走势点评；已离场取离场日期至今的区间最高/最低 */
+  /* 持仓取买入至今区间 + 走势点评；已离场取离场日期至今区间 */
   function fetchAfterQuote(it, done){
-    if (it.status === 'closed' && it.exitDate) {
-      fetchRangeFor(it, function(r){
-        if (r) { it.rangeStat = r; delete it.rangeFail; } else { it.rangeFail = true; }
-        done();
-      });
-    } else {
+    var closed = it.status === 'closed';
+    var from = closed ? it.exitDate : it.buyDate;
+    if (!from) {
+      delete it.rangeStat;
+      if (closed) { done(); return; }
       fetchTrendFor(it.code, function(t){
         if (t) { it.trend = t; delete it.trendFail; } else { it.trendFail = true; }
         done();
       });
+      return;
     }
+    fetchKlineFrom(it.code, from, function(d){
+      var r = d ? parseRangeStats(d, from) : null;
+      if (r) { it.rangeStat = r; delete it.rangeFail; } else { it.rangeFail = true; }
+      if (!closed) {
+        var t = d ? parseKline(d) : null;
+        if (t) { it.trend = t; delete it.trendFail; } else { it.trendFail = true; }
+      }
+      done();
+    });
   }
 
   function refreshOne(it){
@@ -3358,8 +3391,8 @@ h1 { margin: 0px; font-family: var(--serif); font-weight: 400; font-size: 32px; 
     if (editingId) {
       var it = items.find(function(x){ return x.id === editingId; });
       if (it) {
-        /* 离场日期或代码变了，旧的区间统计作废，等下次刷新重算 */
-        if (it.exitDate !== payload.exitDate || it.code !== payload.code) delete it.rangeStat;
+        /* 区间起点或代码变了，旧的区间统计作废，等下次刷新重算 */
+        if (it.exitDate !== payload.exitDate || it.buyDate !== payload.buyDate || it.code !== payload.code) delete it.rangeStat;
         Object.keys(payload).forEach(function(k){ it[k] = payload[k]; });
         updated(it);
       }
